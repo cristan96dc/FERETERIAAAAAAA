@@ -1,0 +1,74 @@
+.sidebar {
+  width: 220px;
+  background-color: #252525; /* Negro sólido */
+  color: white;
+  min-height: 100vh; /* Altura completa de la pantalla */
+  padding: 20px 0; /* Solo arriba y abajo, nada de los lados */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Todo pegado a la izquierda */
+  position: fixed; /* Para que quede fija al hacer scroll */
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Scroll vertical si hay muchos items */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0; /* Sin padding a la izquierda */
+  margin: 0;
+  width: 100%;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+  width: 100%; /* Que el li ocupe todo el ancho */
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px 20px; /* Padding a los lados para que quede bien */
+  border-radius: 0; /* Sin bordes redondeados para que quede pegado */
+  transition: background-color 0.3s, color 0.3s;
+  width: 100%; /* Link ocupa todo el ancho */
+  text-align: left; /* Texto pegado a la izquierda */
+}
+
+.sidebar a:hover {
+  background-color: #FFD700; /* Amarillo oscuro */
+  color: #000; /* Texto negro */
+  font-weight: bold;
+}
+.hamburger-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  z-index: 1001;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none; /* Oculto por defecto */
+}
+
+/* Mostrar hamburguesa en móviles */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}

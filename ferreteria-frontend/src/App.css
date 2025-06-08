@@ -1,0 +1,65 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+}
+
+app-container {
+  display: flex;
+  min-height: 100vh; /* Altura completa de la pantalla */
+  margin: 0;         /* Sin márgenes que centren */
+  padding: 0;        /* Sin padding extra */
+  width: 100vw;      /* Ancho total de la ventana */
+  overflow-x: hidden; /* Evitar scroll horizontal */
+}
+
+/* Sidebar fijo a la izquierda */
+.sidebar {
+  width: 220px;
+  background-color: #252525; /* Negro sólido */
+  color: white;
+  min-height: 100vh; /* Altura total de la ventana */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0; /* No se achica */
+}
+
+/* Lista limpia sin márgenes ni padding */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada item con espacio abajo */
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+/* Links de la barra lateral */
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover con fondo amarillo oscuro y texto negro */
+.sidebar a:hover {
+  background-color: #FFD700; /* Amarillo oscuro */
+  color: #000; /* Texto negro */
+  font-weight: bold;
+}
+
+/* Contenido principal a la derecha, ocupa todo lo que sobra */
+.main-content {
+  flex: 1;          /* Toma todo el espacio disponible */
+  padding: 20px;    /* Padding para que no quede pegado */
+  background-color: #f9f9f9; /* Fondo claro para contraste */
+  min-height: 100vh; /* Altura completa */
+  overflow-y: auto; /* Scroll vertical si hace falta */
+}

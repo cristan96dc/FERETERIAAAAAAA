@@ -1,0 +1,51 @@
+productos-list {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: white; /* Fondo blanco para todo el contenedor */
+  color: #000; /* Texto negro */
+  border: 1px solid #000; /* Borde negro alrededor del contenedor */
+}
+
+.productos-list h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.productos-list table {
+  width: 100%;
+  border-collapse: collapse; /* Que no haya espacios entre bordes */
+  background-color: rgb(153, 15, 15);
+  border: 1px solid #726060; /* Borde negro alrededor de la tabla */
+}
+
+.productos-list th, 
+.productos-list td {
+  border: 1px solid #000; /* Líneas negras como en Excel */
+  padding: 8px 12px;
+  text-align: left;
+  background-color: white; /* Fondo blanco para cada celda */
+}
+
+.productos-list th {
+  font-weight: 700;
+  background-color: white;
+}
+
+.productos-list tbody tr:hover {
+  background-color: #e6f0ff; /* Opcional: color suave al pasar el mouse */
+  cursor: pointer;
+}
+
+.productos-list a {
+  color: #323235; /* Azul típico de links */
+  text-decoration: underline; /* Subrayado para parecer link clásico */
+  font-weight: normal;
+}
+
+.productos-list a:hover {
+  color: #000099; /* Azul más oscuro al pasar el mouse */
+}
