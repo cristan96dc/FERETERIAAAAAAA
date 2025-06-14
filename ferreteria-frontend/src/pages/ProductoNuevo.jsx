@@ -4,6 +4,7 @@ import { TIPO_PRODUCTO_CHOICES } from '../utils/tiposProducto';
 
 const ProductoNuevo = () => {
   const navigate = useNavigate();
+  const [multiplicador, setMultiplicador] = useState(2); // Multiplicador predeterminado
 
   const [formData, setFormData] = useState({
     numero_item: '',
@@ -18,6 +19,7 @@ const ProductoNuevo = () => {
   const [proveedores, setProveedores] = useState([]);
   const [loadingProveedores, setLoadingProveedores] = useState(true);
   const [errorProveedores, setErrorProveedores] = useState(null);
+  const [precioManual, setPrecioManual] = useState(false); // Para saber si el usuario modificó manualmente
 
   useEffect(() => {
     fetch('http://localhost:8000/api/proveedores/')
@@ -35,11 +37,35 @@ const ProductoNuevo = () => {
       });
   }, []);
 
+  // Calcula el precio de venta cuando cambia el precio base o el multiplicador
+  useEffect(() => {
+    if (!precioManual && formData.precio_base && multiplicador) {
+      const nuevoPrecioVenta = Number(formData.precio_base) * multiplicador;
+      setFormData(prev => ({
+        ...prev,
+        precio_venta: nuevoPrecioVenta.toFixed(2)
+      }));
+    }
+  }, [formData.precio_base, multiplicador, precioManual]);
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+
+    // Si el usuario modifica manualmente el precio de venta, marcamos que no queremos auto-calcular
+    if (name === 'precio_venta') {
+      setPrecioManual(true);
+    }
+  };
+
+  const handleMultiplicadorChange = (e) => {
+    const nuevoMultiplicador = Number(e.target.value);
+    setMultiplicador(nuevoMultiplicador);
+    setPrecioManual(false); // Al cambiar el multiplicador, volvemos al cálculo automático
   };
 
   const handleSubmit = (e) => {
@@ -108,7 +134,7 @@ const ProductoNuevo = () => {
           border: 1.8px solid #d1d5db;
           border-radius: 6px;
           font-size: 1rem;
-          color:rgb(255, 255, 255);
+          color:rgb(0, 0, 0);
           transition: border-color 0.3s ease;
           box-sizing: border-box;
           resize: vertical;
@@ -151,6 +177,31 @@ const ProductoNuevo = () => {
         button:hover {
           background-color: #FFD700;
         }
+.multiplicador-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.multiplicador-container label {
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.multiplicador-container input {
+  width: 60px;
+
+  /* Quitar flechas en Chrome, Safari, Edge, Opera */
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.multiplicador-container input::-webkit-outer-spin-button,
+.multiplicador-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
       `}</style>
 
       <div className="container">
@@ -217,6 +268,18 @@ const ProductoNuevo = () => {
               min="0"
               step="0.01"
             />
+
+            <div className="multiplicador-container">
+              <label htmlFor="multiplicador">Multiplicador para precio de venta:</label>
+              <input
+                id="multiplicador"
+                type="number"
+                value={multiplicador}
+                onChange={handleMultiplicadorChange}
+                min="1"
+                step="0.1"
+              />
+            </div>
 
             <label htmlFor="precio_venta">Precio venta:</label>
             <input

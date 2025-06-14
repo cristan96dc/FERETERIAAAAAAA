@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'rest_framework',  
     'django_filters',
     'corsheaders',
+    'rest_framework_simplejwt',
+    'rest_framework.authtoken',  # <-- muy importante
+
+
 
 
 
@@ -81,8 +85,15 @@ WSGI_APPLICATION = 'ferreteria.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
-        'django_filters.rest_framework.DjangoFilterBackend'
-    ]
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.AllowAny',
+
+    ],
 }
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

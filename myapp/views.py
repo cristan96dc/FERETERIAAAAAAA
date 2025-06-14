@@ -79,8 +79,7 @@ import json
 # Ruta al TA.xml
 TA_PATH = 'api_afip/TA.xml'
 
-def home_view(request):
-    return HttpResponse("Bienvenido al sistema de facturación.")
+
 
 def leer_ta(path=TA_PATH):
     tree = ET.parse(path)

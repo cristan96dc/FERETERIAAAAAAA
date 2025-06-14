@@ -1,4 +1,6 @@
 from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 from rest_framework.routers import DefaultRouter
 from .views import (
     ProductoViewSet,
@@ -26,4 +28,7 @@ urlpatterns = [
     path('api/producto-tipos/', tipo_producto_choices, name='producto-tipos'),
     path('bienvenida/', home_view),
     path('emitir-factura/', emitir_factura_view, name='emitir_factura'),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]

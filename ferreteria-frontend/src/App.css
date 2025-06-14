@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
   text-align: left;
@@ -16,7 +16,7 @@ app-container {
 
 /* Sidebar fijo a la izquierda */
 .sidebar {
-  width: 220px;
+  width: 110px;
   background-color: #252525; /* Negro sólido */
   color: white;
   min-height: 100vh; /* Altura total de la ventana */

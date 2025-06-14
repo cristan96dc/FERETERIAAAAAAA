@@ -87,3 +87,4 @@ class Factura(models.Model):
 
     def __str__(self):
         return f"Factura {self.numero_factura} - {'Éxito' if self.exito else 'Error'}"
+
